@@ -1,54 +1,67 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Lenis from "lenis";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import { Toaster } from "@/components/ui/sonner";
+import { LoadingScreen, ScrollProgress, Navbar, Footer } from "@/components/Chrome";
+import { CursorGlow } from "@/components/Background";
+import { Hero } from "@/components/Hero";
+import { About, Skills, SkillMarquee, Experience } from "@/components/Sections";
+import { Projects, Certifications, GitHubSection, Blog, Testimonials } from "@/components/Showcase";
+import { Contact } from "@/components/Contact";
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 1600);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    let raf;
+    const loop = (time) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      lenis.destroy();
+    };
+  }, []);
+
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="App noise relative min-h-screen bg-base text-fg">
+      <LoadingScreen done={loaded} />
+      <CursorGlow />
+      <ScrollProgress />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <SkillMarquee />
+        <Experience />
+        <Projects />
+        <Certifications />
+        <GitHubSection />
+        <Blog />
+        <Testimonials />
+        <Contact />
+      </main>
+      <Footer />
+      <Toaster position="bottom-right" theme={theme} richColors />
     </div>
   );
 }
