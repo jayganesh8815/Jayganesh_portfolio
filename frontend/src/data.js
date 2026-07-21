@@ -12,7 +12,7 @@ export const PROFILE = {
   // REPLACE THESE WITH YOUR PERSONAL DETAILS:
   email: "jayganeshlavange@gmail.com",
   phone: "+91 8767140968",
-  linkedin: "www.linkedin.com/in/jayganesh-lavange-158924342",
+  linkedin: "https://www.linkedin.com/in/jayganesh-lavange-158924342",
   github: "https://github.com/jayganesh8815/jayganesh8815.git",
   
   // OPTION A: Place your resume PDF in `frontend/public/resume.pdf`
