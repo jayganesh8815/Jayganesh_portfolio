@@ -17,7 +17,7 @@ export const PROFILE = {
   
   // OPTION A: Place your resume PDF in `frontend/public/resume.pdf`
   // OPTION B: Replace this with a Google Drive / Dropbox share link
-  resumeUrl: "/resume.pdf" 
+  resumeUrl: "/Resume.pdf" 
 };
 
 /**
