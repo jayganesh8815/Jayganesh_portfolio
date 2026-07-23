@@ -13,7 +13,7 @@ export const PROFILE = {
   email: "jayganeshlavange@gmail.com",
   phone: "+91 8767140968",
   linkedin: "https://www.linkedin.com/in/jayganesh-lavange-158924342",
-  github: "https://github.com/jayganesh8815/jayganesh8815.git",
+  github: "https://github.com/jayganesh8815",
   
   // OPTION A: Place your resume PDF in `frontend/public/resume.pdf`
   // OPTION B: Replace this with a Google Drive / Dropbox share link
@@ -114,7 +114,7 @@ export const PROJECTS = [
     solution: "Built a T-SQL + PowerShell driven dashboard surfacing wait stats, blocking, backup status and disk pressure.",
     tech: ["T-SQL", "PowerShell", "DMVs", "SQL Agent"],
     image: "https://images.pexels.com/photos/8927039/pexels-photo-8927039.jpeg",
-    github:"https://github.com/jayganesh8815/MSSQL_Server_Dashboard.git"
+    github: "https://github.com/jayganesh8815/MSSQL_Server_Dashboard.git"
   },
   {
     title: "Always On Availability Group Implementation",
