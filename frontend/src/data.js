@@ -114,7 +114,7 @@ export const PROJECTS = [
     solution: "Built a T-SQL + PowerShell driven dashboard surfacing wait stats, blocking, backup status and disk pressure.",
     tech: ["T-SQL", "PowerShell", "DMVs", "SQL Agent"],
     image: "https://images.pexels.com/photos/8927039/pexels-photo-8927039.jpeg",
-    github: PROFILE.github
+    github:"https://github.com/jayganesh8815/MSSQL_Server_Dashboard.git"
   },
   {
     title: "Always On Availability Group Implementation",
